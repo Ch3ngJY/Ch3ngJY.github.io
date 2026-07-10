@@ -158,6 +158,39 @@ var $posts = {
             scrollTo(0, 0);
         }
     },
+    smoothScrollToHash: function () {
+        var links = document.querySelectorAll('.toc a[href^="#"], .post-content a[href^="#"]')
+        var spacing = 58
+
+        links.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                var rawHash = link.getAttribute('href')
+                if (!rawHash || rawHash === '#') return
+
+                var targetId = rawHash.slice(1)
+                try {
+                    targetId = decodeURIComponent(targetId)
+                } catch (e) {}
+
+                var targetEl = document.getElementById(targetId)
+                if (!targetEl) return
+
+                event.preventDefault()
+
+                var targetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - spacing
+                window.scrollTo({
+                    top: Math.max(targetTop, 0),
+                    behavior: 'smooth'
+                })
+
+                if (window.history && window.history.pushState) {
+                    window.history.pushState(null, '', rawHash)
+                } else {
+                    window.location.hash = rawHash
+                }
+            })
+        })
+    },
     addValineComment() {
         var el = document.getElementById('vcomments')
         new Valine({
@@ -182,6 +215,8 @@ var $posts = {
         $claudia.fadeInImage(document.querySelectorAll('.post-content img'))
 
         document.getElementById('postTopic').addEventListener('click', this.smoothScrollToTop)
+
+        this.smoothScrollToHash()
 
         window.Valine && this.addValineComment()
     }
