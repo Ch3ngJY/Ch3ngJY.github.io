@@ -39,10 +39,10 @@
   min-height: clamp(320px, 42vw, 520px);
   overflow: hidden;
   color: #fff;
-  --post-hero-overlay-start: rgba(0, 0, 0, .30);
-  --post-hero-overlay-end: rgba(0, 0, 0, .46);
-  --post-hero-vignette-center: rgba(0, 0, 0, .04);
-  --post-hero-vignette-edge: rgba(0, 0, 0, .34);
+  --post-hero-overlay-start: rgba(0, 0, 0, .16);
+  --post-hero-overlay-end: rgba(0, 0, 0, .28);
+  --post-hero-vignette-center: rgba(0, 0, 0, .02);
+  --post-hero-vignette-edge: rgba(0, 0, 0, .20);
   background: radial-gradient(circle at 50% 30%, rgba(70, 90, 140, 0.45), transparent 55%), linear-gradient(135deg, #111827, #030712);
 }
 .post-hero:before, .post-hero:after {
@@ -104,7 +104,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
-.post-hero .post-hero-title {
+.post-hero #postTitle.post-hero-title {
   margin: 22px 0 0;
   color: #fff !important;
   font-size: clamp(2.2rem, 6vw, 4.6rem);
@@ -132,18 +132,18 @@
 }
 
 :root.appearance-dark .post-hero {
-  --post-hero-overlay-start: rgba(0, 0, 0, .46);
-  --post-hero-overlay-end: rgba(0, 0, 0, .62);
-  --post-hero-vignette-center: rgba(0, 0, 0, .08);
-  --post-hero-vignette-edge: rgba(0, 0, 0, .48);
+  --post-hero-overlay-start: rgba(0, 0, 0, .34);
+  --post-hero-overlay-end: rgba(0, 0, 0, .50);
+  --post-hero-vignette-center: rgba(0, 0, 0, .05);
+  --post-hero-vignette-edge: rgba(0, 0, 0, .36);
 }
 
 @media (prefers-color-scheme: dark) {
   :root.appearance-auto .post-hero {
-    --post-hero-overlay-start: rgba(0, 0, 0, .46);
-    --post-hero-overlay-end: rgba(0, 0, 0, .62);
-    --post-hero-vignette-center: rgba(0, 0, 0, .08);
-    --post-hero-vignette-edge: rgba(0, 0, 0, .48);
+    --post-hero-overlay-start: rgba(0, 0, 0, .34);
+    --post-hero-overlay-end: rgba(0, 0, 0, .50);
+    --post-hero-vignette-center: rgba(0, 0, 0, .05);
+    --post-hero-vignette-edge: rgba(0, 0, 0, .36);
   }
 }
 .post-page .post-content code {
@@ -227,7 +227,7 @@
     max-width: 680px;
     padding: 56px 0 48px;
   }
-  .post-hero .post-hero-title {
+  .post-hero #postTitle.post-hero-title {
     margin-top: 18px;
     font-size: clamp(2rem, 10vw, 3rem);
   }
