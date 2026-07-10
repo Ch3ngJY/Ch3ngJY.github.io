@@ -85,6 +85,10 @@ $coverBlurEffect: 20px;
         word-break: break-word;
         line-height: 1.75;
       }
+
+      > .button.is-default.mt-2.has-text-weight-semibold {
+        display: none;
+      }
     }
   }
 
