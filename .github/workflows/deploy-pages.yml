@@ -7,16 +7,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,27 +26,29 @@ jobs:
           node-version: "22"
           cache: npm
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
       - name: Install dependencies
         run: npm ci
 
       - name: Build site
         run: npm run clean && npm run build
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
+      - name: Publish to gh-pages
+        run: |
+          touch public/.nojekyll
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages || true
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+            git worktree add gh-pages-worktree origin/gh-pages
+          else
+            git worktree add --detach gh-pages-worktree
+            git -C gh-pages-worktree checkout --orphan gh-pages
+          fi
+
+          find gh-pages-worktree -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -R public/. gh-pages-worktree/
+
+          git -C gh-pages-worktree add -A
+          git -C gh-pages-worktree commit -m "Deploy ${GITHUB_SHA}" || exit 0
+          git -C gh-pages-worktree push origin HEAD:gh-pages
