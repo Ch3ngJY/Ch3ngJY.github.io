@@ -1,0 +1,132 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>点分治学习笔记</title><meta name="description" content="ChengJY's blog"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css?v=20260709-nav"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js?v=20260709"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="定义点分治，顾名思义，就是通过基于点的分治的一种算法。
+通常用于处理树上问题，如树上所有路径统计。
+我们设一次操作的时间复杂度为 $O(1)$ ，那么一次点分治复杂度为 $O(n \log n)$ 。
+具体流程操作-&amp;gt;分治-&amp;gt;操作……（不知道怎么讲）
+点分治的核心主要在于高效的分治，每一次都可以将所求区间大小缩短至 $\dfrac{1}{k}$ 。
+因此 $T(n)=k\times T(n/k)$ ，根据主定理，时间复杂度为 $O(n \log n)$ 。
+分治的关键在于从在每一次操作的树上寻找重心，易证以重心为根的每颗子树大小不超过 $\dfrac{n}{2}$ ，从而可以有效缩小操作区间，保证正确的复杂度。(其实感性也很好理解的来着)
+例题P3806 【模板】点分治1
+模板题，典中典。
+两点.."><script>window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+    displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><meta name="generator" content="Hexo 8.1.2"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">ChengJY's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点分治学习笔记</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点击返回顶部</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/categories">分类</a></h3><h3 class="is-inline-block"><a href="/tags">标签</a></h3><button class="appearance-toggle js-appearance-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span data-theme-icon aria-hidden="true">&#9680;</span></button></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/categories">分类</a></h3><h3 class="is-inline-block"><a href="/tags">标签</a></h3><button class="appearance-toggle js-appearance-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span data-theme-icon aria-hidden="true">&#9680;</span></button></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-text">具体流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">点分治学习笔记</h1><time class="has-text-grey" datetime="2022-04-16T09:53:40.000Z">2022-04-16</time><article class="mt-2 post-content"><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>点分治，顾名思义，就是通过基于点的分治的一种算法。</p>
+<p>通常用于处理树上问题，如树上所有路径统计。</p>
+<p>我们设一次操作的时间复杂度为 $O(1)$ ，那么一次点分治复杂度为 $O(n \log n)$ 。</p>
+<h3 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h3><p>操作-&gt;分治-&gt;操作……（不知道怎么讲）</p>
+<p>点分治的核心主要在于高效的分治，每一次都可以将所求区间大小缩短至 $\dfrac{1}{k}$ 。</p>
+<p>因此 $T(n)=k\times T(n/k)$ ，根据主定理，时间复杂度为 $O(n \log n)$ 。</p>
+<p>分治的关键在于从在每一次操作的树上寻找重心，易证以重心为根的每颗子树大小不超过 $\dfrac{n}{2}$ ，从而可以有效缩小操作区间，保证正确的复杂度。<del>(其实感性也很好理解的来着)</del></p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3806">P3806 【模板】点分治1</a></p>
+<p>模板题，典中典。</p>
+<p>两点间的路径分为两种：经过根的和不经过根的。</p>
+<p>对于第二种我们在分治时可以统计到。</p>
+<p>那么简单容斥一下就很清晰了：</p>
+<ul>
+<li>先找到整棵树的重心，用桶统计所有经过重心的路径，更新答案。</li>
+<li>分治，求出以重心为根的树的每颗子树的“小重心”，容斥一下发现不经过重心而经过小重心的路径即为在小重心所在子树中经过小重心的路径。(有点绕)</li>
+<li>以此类推，直到每个点都成为过重心后，答案更新完成。</li>
+</ul>
+<p>一些注意点：</p>
+<ul>
+<li>桶中要随时保持 $t_0=1$ ，因为都有不和其他路径组合的一种可能。</li>
+<li>扶苏在<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/discuss/188596">这个帖子</a>中提到关于时空间复杂的的问题。若一次统计的常数为 $k_1$ ，点分治自身的常数为 $k2$，那么将询问在点分治内部统一更新的复杂度为 $O((k_2+k_1)n\log n)$ ，每次分开更新的复杂度为 $O(k_2k_1n\log n))$ , 显然后者大的多，故注意此实现细节。</li>
+</ul>
+<p>Code</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define N 10005
+#define M 10000005
+using namespace std;
+
+inline int read(){
+    int x=0,w=1;
+    char ch=getchar();
+    while(ch&gt;&#39;9&#39;||ch&lt;&#39;0&#39;){if(ch==&#39;-&#39;)w=-1;ch=getchar();}
+    while(ch&gt;=&#39;0&#39;&amp;&amp;ch&lt;=&#39;9&#39;)x=(x&lt;&lt;1)+(x&lt;&lt;3)+(ch^48),ch=getchar();
+    return x*w;
+}
+
+int root,n,m,tot,sum,cnt;
+int head[N],q[N],dp[N],len[N],ans[N],cl[N],dis[N],siz[N];
+int vis[N],t[M];
+struct Edge{int to,next,w;}edge[N&lt;&lt;1];
+
+void add(int u,int v,int w){
+	edge[++cnt]=(Edge){v,head[u],w};
+	head[u]=cnt;
+}
+void find(int x,int fa){
+	siz[x]=1; dp[x]=0;
+	for(int i=head[x];i;i=edge[i].next){
+		int v=edge[i].to;
+		if(vis[v]||v==fa) continue;
+		find(v,x);
+		dp[x]=max(dp[x],siz[v]);siz[x]+=siz[v];
+	}
+	dp[x]=max(dp[x],sum-siz[x]);
+	if(dp[x]&lt;dp[root]) root=x;
+}
+void getdis(int x,int fa){
+	len[++tot]=dis[x];
+	for(int i=head[x];i;i=edge[i].next){
+		int v=edge[i].to;
+		if(v==fa||vis[v]) continue;
+		dis[v]=dis[x]+edge[i].w;
+		getdis(v,x);
+	}
+}
+void calm(int x){
+	int w=0;
+	for(int i=head[x];i;i=edge[i].next){
+		int v=edge[i].to;
+		if(vis[v]) continue;
+		tot=0; dis[v]=edge[i].w; getdis(v,x);
+		for(int j=1;j&lt;=tot;++j)
+			for(int k=1;k&lt;=m;++k)
+				if(q[k]&gt;=len[j]) ans[k]|=t[q[k]-len[j]];
+		for(int j=1;j&lt;=tot;++j) 
+			if(len[j]&lt;=1e7)cl[++w]=len[j],t[len[j]]=1;
+	}
+	for(int i=1;i&lt;=w;++i) t[cl[i]]=0;
+}
+void solve(int x){
+	vis[x]=t[0]=1; calm(x);
+	for(int i=head[x];i;i=edge[i].next){
+		int v=edge[i].to;
+		if(vis[v]) continue;
+		root=0;dp[0]=n;sum=siz[v];
+		find(v,x);solve(root);
+	}
+}
+
+signed main(){
+
+	//freopen(&quot;P3806_7.in&quot;,&quot;r&quot;,stdin);
+
+	n=read();m=read();
+	for(int i=1;i&lt;n;++i){
+		int u=read(),v=read(),w=read();
+		add(u,v,w);add(v,u,w);
+	}
+	for(int i=1;i&lt;=m;++i) q[i]=read();
+	root=0;dp[0]=sum=n;
+	find(1,0); solve(root);
+	for(int i=1;i&lt;=m;++i) 
+		if(ans[i]) puts(&quot;AYE&quot;);
+		else puts(&quot;NAY&quot;);
+	//for(int i=1;i&lt;=m;++i) printf(&quot;%d &quot;,ans[i]);
+	return 0;
+}
+</code></pre>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2022/05/15/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%85%A5%E9%97%A8/" title="多项式入门"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">上一页: 多项式入门</span></a><a class="button is-default" href="/2022/04/11/CF1661D%20Progressions%20Covering%20%E9%A2%98%E8%A7%A3/" title="CF1661D Progressions Covering 题解"><span class="has-text-weight-semibold">下一页: CF1661D Progressions Covering 题解</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/Ch3ngJY"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> ChengJY 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script>window.CLAUDIA_CANVAS_NEST = {"count":99,"mobile":false,"maxDistance":6000,"mouseDistance":20000}</script><script defer src="/js/canvas-nest.js?v=20260709"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>

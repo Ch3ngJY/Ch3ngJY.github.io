@@ -1,0 +1,125 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>差分约束学习笔记</title><meta name="description" content="ChengJY's blog"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css?v=20260709-nav"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js?v=20260709"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="给定 $n$ 个形如 $a-b≤c$ 的式子，求一组解或求两个变量间的最值
+转化为图论问题跑最短&amp;#x2F;长路即可。
+例：P3275 [SCOI2011]糖果 。
+简化题意：给定一串约束条件，求所有元素的最小值。
+稍微转换一下，就是使两个元素差值尽可能小。
+例如 $x_1+c≤x_2$ 如果用最短路去约束，则会取到最小值，所以应该用最长路去维护。
+具体原因我也解释不来屮。
+又因为题意对每个元素都有大于等于1的约束，所以从超级源点向每个元素的边边权要设为1。
+这题就做完了，但是有些些小细节。
+#include&amp;lt;bits/stdc++.h&amp;gt;
+#define N 200005
+#define int long long
+using namespace std;
+ 
+inline int read().."><script>window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+    displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><meta name="generator" content="Hexo 8.1.2"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">ChengJY's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">差分约束学习笔记</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点击返回顶部</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/categories">分类</a></h3><h3 class="is-inline-block"><a href="/tags">标签</a></h3><button class="appearance-toggle js-appearance-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span data-theme-icon aria-hidden="true">&#9680;</span></button></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/categories">分类</a></h3><h3 class="is-inline-block"><a href="/tags">标签</a></h3><button class="appearance-toggle js-appearance-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span data-theme-icon aria-hidden="true">&#9680;</span></button></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile is-hidden"></div><div class="column is-9"><header class="my-4"><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">差分约束学习笔记</h1><time class="has-text-grey" datetime="2021-11-15T12:19:31.000Z">2021-11-15</time><article class="mt-2 post-content"><p>给定 $n$ 个形如 $a-b≤c$ 的式子，求一组解或求两个变量间的最值</p>
+<p>转化为图论问题跑最短&#x2F;长路即可。</p>
+<p>例：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3275">P3275 [SCOI2011]糖果</a> 。</p>
+<p>简化题意：给定一串约束条件，求所有元素的最小值。</p>
+<p>稍微转换一下，就是使两个元素差值尽可能小。</p>
+<p>例如 $x_1+c≤x_2$ 如果用最短路去约束，则会取到最小值，所以应该用最长路去维护。</p>
+<p>具体原因我也解释不来屮。</p>
+<p>又因为题意对每个元素都有大于等于1的约束，所以从超级源点向每个元素的边边权要设为1。</p>
+<p>这题就做完了，但是有些些小细节。</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define N 200005
+#define int long long
+using namespace std;
+ 
+inline int read(){
+    int x=0,w=1;
+    char ch=getchar();
+    while(ch&gt;&#39;9&#39;||ch&lt;&#39;0&#39;){if(ch==&#39;-&#39;)w=-1;ch=getchar();}
+    while(ch&gt;=&#39;0&#39;&amp;&amp;ch&lt;=&#39;9&#39;)x=(x&lt;&lt;1)+(x&lt;&lt;3)+(ch^48),ch=getchar();
+    return w*x;
+}
+
+int n,k,cnt,ans;
+int dis[N],head[N],tot[N];
+bool vis[N];
+struct node{int to,next,w;}edge[N&lt;&lt;1];
+
+void add(int u,int v,int w){
+    edge[++cnt]=(node){v,head[u],w};
+    head[u]=cnt;
+}
+void spfa(){
+    stack&lt;int&gt; q;
+    q.push(0);
+    vis[0]=1;
+    while(!q.empty()){
+        int u=q.top();q.pop();vis[u]=0;
+        for(int i=head[u];i;i=edge[i].next){
+            int v=edge[i].to;
+            if(dis[u]+edge[i].w&gt;dis[v]){
+                dis[v]=dis[u]+edge[i].w;
+                if(!vis[v]){
+                    vis[v]=1;tot[v]++;
+                    if(tot[v]&gt;=n) {puts(&quot;-1&quot;);exit(0);}
+                    q.push(v);
+                }
+            }
+        }
+    }
+}
+signed main(){
+    n=read();k=read();
+    for(int i=1;i&lt;=k;++i){
+        int x=read(),a=read(),b=read();
+        if(x==1) add(a,b,0),add(b,a,0);
+        else if(x==2) {
+            if(a==b){puts(&quot;-1&quot;);return 0;}
+            add(a,b,1);
+        }
+        else if(x==3) add(b,a,0);
+        else if(x==4) {
+            if(a==b){ puts(&quot;-1&quot;);return 0;}
+            add(b,a,1);
+        }
+        else  add(a,b,0);
+    }
+    for(int i=1;i&lt;=n;++i) add(0,i,1);
+    spfa();
+    for(int i=1;i&lt;=n;++i)
+        ans+=dis[i];
+    printf(&quot;%lld&quot;,ans);
+    return 0;
+}
+</code></pre>
+<p>最小值同理。</p>
+<p>我真不知道啥时跑最长啥时跑最短屮。</p>
+<blockquote>
+<p> 考场上随机应变</p>
+<p>​						——————water_tomato</p>
+</blockquote>
+<p><strong>upd. on 2022.7.15</strong></p>
+<p>好像又懂了，补充一下。</p>
+<p><strong>最大值</strong></p>
+<p>将约束条件转化为形如 $dis_i\le dis_j+w$ 。</p>
+<p>从 $j$ 向 $i$ 连一条边权为 $w$ 的边，跑最短路。</p>
+<p>为什么要跑最短路呢，因为跑最短路在这种情况下是跑到上界的，$dis_i$ 就是把上界跑满的结果。</p>
+<p>这样建图跑最长路就寄了，答案是错误的。</p>
+<p><strong>最小值</strong></p>
+<p>将约束条件转化为形如 $dis_i\ge dis_j+w$ 。</p>
+<p>从 $j$ 向 $i$ 连一条边权为 $w$ 的边，跑最长路，也可以跑到上界。</p>
+<p><img src="/images/luogu/qaq7296c-01.png"></p>
+<p>我们令 $dis_1=0$ ，则跑最长路跑出来的 $dis_3=4$ ，刚好卡到上界。</p>
+<p>跑最短路跑出来的 $dis_3=2$ ，不满足 1 , 4 之间的关系。</p>
+<p>上面的最大值同理。</p>
+<p><strong>参考资料</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/thexue/article/details/123587112">https://blog.csdn.net/thexue/article/details/123587112</a></p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2021/11/27/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="模拟退火学习笔记"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">上一页: 模拟退火学习笔记</span></a><a class="button is-default" href="/2021/11/12/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%AC%AC%E4%B8%83%E5%9C%BAT2%20%E6%AD%A6%E4%B9%89%E5%AF%BA%20%E9%A2%98%E8%A7%A3/" title="牛客提高第七场T2 武义寺 题解"><span class="has-text-weight-semibold">下一页: 牛客提高第七场T2 武义寺 题解</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/Ch3ngJY"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> ChengJY 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script>window.CLAUDIA_CANVAS_NEST = {"count":99,"mobile":false,"maxDistance":6000,"mouseDistance":20000}</script><script defer src="/js/canvas-nest.js?v=20260709"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
