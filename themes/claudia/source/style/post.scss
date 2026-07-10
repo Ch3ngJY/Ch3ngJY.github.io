@@ -244,6 +244,36 @@ $lineColor: var(--border-line-color);
     border-top: 1px solid $lineColor;
   }
 
+  .giscus-comment-container {
+    padding-top: 1.5rem;
+    overflow-x: hidden;
+
+    .giscus-comment-title {
+      margin-bottom: 1rem;
+      color: var(--primary-text-color);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .giscus {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .giscus-config-hint,
+    .giscus-error-message {
+      margin: 0;
+      padding: .9rem 1rem;
+      border: 1px solid $lineColor;
+      border-radius: $borderRadius;
+      background: var(--third-bg-color);
+      color: var(--second-text-color);
+      font-size: .95rem;
+      line-height: 1.7;
+    }
+  }
+
   .toc {
     position: sticky;
     top: 60px;

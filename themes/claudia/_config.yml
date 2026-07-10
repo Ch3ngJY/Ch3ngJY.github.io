@@ -47,6 +47,23 @@ comment_disqus:
     url:  # the url of your website main domain like this https://xxx.xxx/
     name: # the short name in disqus
 
+# documents: https://giscus.app/
+comment_giscus:
+  enable: true
+  repo: Ch3ngJY/Ch3ngJY.github.io
+  repo_id: R_kgDOP_vA2A
+  category: Announcements
+  category_id: DIC_kwDOP_vA2M4DA5vp
+  mapping: pathname
+  strict: 0
+  reactions_enabled: 1
+  emit_metadata: 0
+  input_position: bottom
+  lang: zh-CN
+  loading: lazy
+  theme_light: light_protanopia
+  theme_dark: dark_protanopia
+
 # dark
 # light
 # user-can-set
