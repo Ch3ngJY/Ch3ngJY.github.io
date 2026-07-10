@@ -59,6 +59,9 @@ post_cover:
   random: true
   random_covers:
     - /images/covers/1.jpg
+    - /images/covers/2.jpg
+    - /images/covers/3.jpg
+    - /images/covers/4.jpg
 
 # Similar to Butterfly's canvas-nest background effect.
 background_effect:
