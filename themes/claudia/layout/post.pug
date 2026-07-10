@@ -31,33 +31,34 @@ block topic
         p.is-full-height.is-flex-shrink-0.is-flex.is-align-items-center.is-justify-content-center= __('click_back_to_the_top')
 
 block content
+    include widget/methods
     - var tocContent = toc(page.content, {list_number: false})
+    - var heroImgURL = getPostHeroImg(page)
+    - var heroStyle = heroImgURL ? `--post-hero-image: url('${heroImgURL.replace(/'/g, "%27")}')` : false
+    section.post-hero(class= !heroImgURL && 'is-fallback', style= heroStyle)
+        .post-hero-inner
+            if page.categories && page.categories.length > 0
+                .post-hero-categories
+                    each category in page.categories.toArray()
+                        a.post-hero-category(href= url_for(`/categories/${category.name}`))= category.name
+            h1.post-hero-title.is-family-serif#postTitle= page.title
+            .post-hero-meta
+                if page.date
+                    span.post-hero-meta-item
+                        span 发布于
+                        time(datetime=page.date.toJSON())= date(page.date, date_format)
+                if page.updated
+                    span.post-hero-meta-item
+                        span 最后更新
+                        time(datetime=page.updated.toJSON())= date(page.updated, date_format)
+            if page.tags && page.tags.length > 0
+                .post-hero-tags
+                    each tag in page.tags.toArray()
+                        a.post-hero-tag(href= url_for(`/tags/${tag.name}`))= tag.name
     main.container.is-max-widescreen.content.section.post-page.pt-4.px-4
         .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
             .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
             .column.is-9
-                header.post-hero
-                    h1.post-title.is-family-serif#postTitle= page.title
-                    .post-meta
-                        if page.date
-                            span.post-meta-item
-                                span.post-meta-label 发布于
-                                time(datetime=page.date.toJSON())= date(page.date, date_format)
-                        if page.categories && page.categories.length > 0
-                            if page.date
-                                span.post-meta-divider
-                            span.post-meta-item
-                                span.post-meta-label 分类
-                                each category, categoryIndex in page.categories.toArray()
-                                    if categoryIndex > 0
-                                        span.post-meta-separator /
-                                    a.post-category-link(href= url_for(`/categories/${category.name}`))= category.name
-                    if page.tags && page.tags.length > 0
-                        .post-tags
-                            span.post-meta-label 标签
-                            each tag in page.tags.toArray()
-                                a(href= url_for(`/tags/${tag.name}`))
-                                    i.tag.post-item-tag= tag.name
                 article.mt-2.post-content!= page.content
                 section.jump-container.is-flex.is-justify-content-space-between.my-6
                     // em is empty placeholder

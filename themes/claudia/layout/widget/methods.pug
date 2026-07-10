@@ -50,3 +50,9 @@
         //     return matchImg[1]
         // }
     }
+
+    function getPostHeroImg(post) {
+        if (post.heroImage) return normalizeImageUrl(post.heroImage)
+        if (post.banner) return normalizeImageUrl(post.banner)
+        return getPostCoverImg(post)
+    }
