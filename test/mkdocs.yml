@@ -1,5 +1,0 @@
-site_name: ChengJY
-nav:
-  - Home: "index.md"
-theme:
-  name: material
