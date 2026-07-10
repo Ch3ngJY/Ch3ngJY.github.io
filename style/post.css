@@ -31,58 +31,102 @@
   transform: translateY(0);
 }
 
-.post-page .post-hero {
-  margin: 0 0 32px;
-  padding: 24px 0 28px;
-  border-bottom: 1px solid var(--border-line-color);
-}
-.post-page .post-hero .post-title {
-  margin: 0;
-  color: var(--primary-text-color);
-  font-size: 2.35rem;
-  line-height: 1.25;
-  font-weight: 700;
-}
-.post-page .post-hero .post-meta,
-.post-page .post-hero .post-tags {
+.post-hero {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-height: clamp(320px, 42vw, 520px);
+  overflow: hidden;
+  color: #fff;
+  background: radial-gradient(circle at 50% 30%, rgba(70, 90, 140, 0.45), transparent 55%), linear-gradient(135deg, #111827, #030712);
+}
+.post-hero:before, .post-hero:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.post-hero:before {
+  inset: -10px;
+  background-image: var(--post-hero-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: blur(1px);
+  transform: scale(1.035);
+}
+.post-hero:after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.68)), radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.54));
+}
+.post-hero.is-fallback:before {
+  background-image: radial-gradient(circle at 30% 20%, rgba(50, 115, 220, 0.45), transparent 34%), linear-gradient(135deg, #111827, #030712);
+  filter: none;
+  transform: none;
+}
+.post-hero .post-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 32px);
+  max-width: 980px;
+  padding: 72px 0 64px;
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+.post-hero .post-hero-categories,
+.post-hero .post-hero-meta,
+.post-hero .post-hero-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 8px 12px;
-  color: var(--second-text-color);
-  font-size: 14px;
-  line-height: 1.7;
 }
-.post-page .post-hero .post-meta {
-  margin-top: 14px;
+.post-hero .post-hero-categories,
+.post-hero .post-hero-tags {
+  gap: 8px;
 }
-.post-page .post-hero .post-tags {
-  margin-top: 10px;
-}
-.post-page .post-hero .post-meta-item {
+.post-hero .post-hero-category,
+.post-hero .post-hero-tag {
   display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 5px;
+  min-height: 28px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
-.post-page .post-hero .post-meta-label {
-  color: var(--primary-text-color);
+.post-hero .post-hero-title {
+  margin: 22px 0 0;
+  color: #fff;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  line-height: 1.18;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.post-hero .post-hero-meta {
+  gap: 8px 18px;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.post-hero .post-hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.post-hero .post-hero-meta-item span {
   font-weight: 700;
 }
-.post-page .post-hero .post-meta-divider {
-  display: inline-block;
-  width: 1px;
-  height: 14px;
-  background: var(--border-line-color);
+.post-hero .post-hero-tags {
+  margin-top: 22px;
 }
-.post-page .post-hero .post-meta-separator {
-  color: var(--second-text-color);
-  opacity: 0.65;
-}
-.post-page .post-hero .post-category-link {
-  color: #3273dc;
-  font-weight: 700;
-}
+
 .post-page .post-content code {
   border-radius: 4px;
   background: var(--third-bg-color);
@@ -156,15 +200,21 @@
 }
 
 @media screen and (max-width: 768px) {
-  .post-page .post-hero {
-    margin-bottom: 24px;
-    padding-top: 8px;
-    padding-bottom: 22px;
+  .post-hero {
+    min-height: clamp(280px, 72vw, 420px);
   }
-  .post-page .post-hero .post-title {
-    font-size: 1.85rem;
+  .post-hero .post-hero-inner {
+    width: calc(100% - 28px);
+    max-width: 680px;
+    padding: 56px 0 48px;
   }
-  .post-page .post-hero .post-meta-divider {
-    display: none;
+  .post-hero .post-hero-title {
+    margin-top: 18px;
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+  .post-hero .post-hero-meta {
+    gap: 6px 12px;
+    margin-top: 18px;
+    font-size: 14px;
   }
 }
