@@ -16,7 +16,7 @@ $coverBlurEffect: 20px;
     // cover image
     > header {
       overflow: hidden;
-      aspect-ratio: 16 / 9;
+      height: clamp(145px, 18vw, 220px);
 
       // fix composite layer border on safari browser
       z-index: 1;
@@ -75,6 +75,11 @@ $coverBlurEffect: 20px;
       }
 
       .post-excerpt {
+        display: -webkit-box;
+        max-height: calc(1.75em * 3);
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
         white-space: pre-line;
         overflow-wrap: anywhere;
         word-break: break-word;
@@ -279,6 +284,16 @@ $coverBlurEffect: 20px;
       &.current {
         color: #fff!important;
         background: $activeColor;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .post-container {
+    .post-item-card {
+      > header {
+        height: clamp(130px, 42vw, 180px);
       }
     }
   }
