@@ -1,106 +1,153 @@
 <!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>ChengJY's blog</title><meta name="description" content="ChengJY's blog"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
 <!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css?v=20260709-nav"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js?v=20260709"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 8.1.2"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">ChengJY's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>归档 · 全部</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/categories">分类</a></h3><h3 class="is-inline-block"><a href="/tags">标签</a></h3><button class="appearance-toggle js-appearance-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span data-theme-icon aria-hidden="true">&#9680;</span></button></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3><h3 class="is-inline-block"><a href="/categories">分类</a></h3><h3 class="is-inline-block"><a href="/tags">标签</a></h3><button class="appearance-toggle js-appearance-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span data-theme-icon aria-hidden="true">&#9680;</span></button></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/3.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/15/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/3.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/15/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">差分约束学习笔记</a></h2><time class="has-text-grey" datetime="2021-11-15T12:19:31.000Z">2021-11-15</time><p class="post-excerpt is-flex-grow-2 mt-2">给定 $n$ 个形如 $a-b≤c$ 的式子，求一组解或求两个变量间的最值
+
 转化为图论问题跑最短&amp;#x2F;长路即可。
+
 例：P3275 [SCOI2011]糖果 。
+
 简化题意：给定一串约束条件，求所有元素的最小值。
+
 稍微转换一下，就是使两个元素差值尽可能小。
+
 例如 $x_1+c≤x_2$ 如果用最短路去约束，则会取到最小值，所以应该用最长路去维护。
+
 具体原因我也解释不来屮。
+
 又因为题意对每个元素都有大于等于1的约束，所以从超级源点向每个元素的边边权要设为1。
+
 这题就做完了，但是有些些小细节。
+
 #include&amp;lt;bits/stdc++.h&amp;gt;
 #define N 200005
 #define int long long
 using namespace std;
- 
-inline int read()..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/15/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/12/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%AC%AC%E4%B8%83%E5%9C%BAT2%20%E6%AD%A6%E4%B9%89%E5%AF%BA%20%E9%A2%98%E8%A7%A3/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/12/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%AC%AC%E4%B8%83%E5%9C%BAT2%20%E6%AD%A6%E4%B9%89%E5%AF%BA%20%E9%A2%98%E8%A7%A3/">牛客提高第七场T2 武义寺 题解</a></h2><time class="has-text-grey" datetime="2021-11-12T02:38:20.000Z">2021-11-12</time><p class="post-excerpt is-flex-grow-2 mt-2">题意简述对于一个排列 ${p= \{ 1,2,...,n\}}p={1,2,...,n}$，记 $\text{val}(p)$ 等于最小的 $i$ 满足 ${i}&amp;gt; a_ii&amp;gt;a$ ，如不存在则 $\text{val}(p)&amp;#x3D;n+1$ 。求 $\text{val}(p)$ 的期望值，答案对 $998244353$ 取模。
-题解令 $k=n+1-i$​ ，枚举 $a_i=j$​ ，则前 $i-1$​ 个数的可行的方案为:
+
+inline in..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/15/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/12/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%AC%AC%E4%B8%83%E5%9C%BAT2%20%E6%AD%A6%E4%B9%89%E5%AF%BA%20%E9%A2%98%E8%A7%A3/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/12/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%AC%AC%E4%B8%83%E5%9C%BAT2%20%E6%AD%A6%E4%B9%89%E5%AF%BA%20%E9%A2%98%E8%A7%A3/">牛客提高第七场T2 武义寺 题解</a></h2><time class="has-text-grey" datetime="2021-11-12T02:38:20.000Z">2021-11-12</time><p class="post-excerpt is-flex-grow-2 mt-2">题意简述
+对于一个排列 ${p= \{ 1,2,...,n\}}p={1,2,...,n}$，记 $\text{val}(p)$ 等于最小的 $i$ 满足 ${i}&amp;gt; a_ii&amp;gt;a$ ，如不存在则 $\text{val}(p)&amp;#x3D;n+1$ 。求 $\text{val}(p)$ 的期望值，答案对 $998244353$ 取模。
+
+题解
+令 $k=n+1-i$​ ，枚举 $a_i=j$​ ，则前 $i-1$​ 个数的可行的方案为:
+
 $sum_i=$ $\sum \limits_{j=1}^{i-1}(k+1)^{i-1-j} \times k^j$
+
 大力观察发现是等比数列。
+
 等比数列求和公式：
-$\sum \limits _{k=0}^{n-1}(x \times a^{k}) = x \time..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/12/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%AC%AC%E4%B8%83%E5%9C%BAT2%20%E6%AD%A6%E4%B9%89%E5%AF%BA%20%E9%A2%98%E8%A7%A3/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/10/NOIP%202021%20%E6%B8%B8%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a><a href="/tags/%E6%B8%B8%E8%AE%B0"><i class="tag post-item-tag">游记</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/10/NOIP%202021%20%E6%B8%B8%E8%AE%B0/">NOIP 2021 游记</a></h2><time class="has-text-grey" datetime="2021-11-10T08:08:54.000Z">2021-11-10</time><p class="post-excerpt is-flex-grow-2 mt-2">$\mathrm{Day} -9$打模拟赛 ：
+
+$\sum \limits _{k=0}^{n-1}(x \times a^{k}) = ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/12/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%AC%AC%E4%B8%83%E5%9C%BAT2%20%E6%AD%A6%E4%B9%89%E5%AF%BA%20%E9%A2%98%E8%A7%A3/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/10/NOIP%202021%20%E6%B8%B8%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a><a href="/tags/%E6%B8%B8%E8%AE%B0"><i class="tag post-item-tag">游记</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/10/NOIP%202021%20%E6%B8%B8%E8%AE%B0/">NOIP 2021 游记</a></h2><time class="has-text-grey" datetime="2021-11-10T08:08:54.000Z">2021-11-10</time><p class="post-excerpt is-flex-grow-2 mt-2">$\mathrm{Day} -9$
+打模拟赛 ：
 
 $A$ 题不会啊，dp 真难。
+
 $B$ 题按板子打完部分分之后开始乱搞，想着把每个不同的字串拿出来搞一下再取和。没想到再来一次 dp 很可惜 (话说为什么有两道dp) 。
+
 $C$ 题暴力，啥是数论分块？
+
 $D$​​ 题暴力，啥是重心？重心咋求？
 
 $20 + 70 + 35 + 50 = 175$
+
 被 wyy332623 和  rouxQ 巨佬吊打。
+
 打 generals：被全机房吊打。
-$\mathrm{Day} -8$又打模拟赛：
+
+$\mathrm{Day} -8$
+又打模拟赛：
 
 $A$ 题二分+特判乱搞，搞过去了，话说二分怎么打。
+
 $B$ 题傻逼dp ，然而赛时还是没有调出来。对自己dp 式子理解有误，tcl。
-$C$ 题欧拉序+大力观察，下午补的时候忘了前向星反向历遍心态调炸了。
-$D$​ 题也是..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/10/NOIP%202021%20%E6%B8%B8%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/3.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/09/FHQ-%20Treap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/3.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/09/FHQ-%20Treap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">FHQ- Treap学习笔记</a></h2><time class="has-text-grey" datetime="2021-11-09T02:18:19.000Z">2021-11-09</time><p class="post-excerpt is-flex-grow-2 mt-2">FHQ-Treap 与Treap都保证在第一关键字有序的情况下，维护第二关键字以达到平衡的目的。
+
+$C$ 题欧拉序+大力观察，下午补的时候忘了前向星反向历遍心态调炸了..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/10/NOIP%202021%20%E6%B8%B8%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/3.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/09/FHQ-%20Treap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/3.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/09/FHQ-%20Treap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">FHQ- Treap学习笔记</a></h2><time class="has-text-grey" datetime="2021-11-09T02:18:19.000Z">2021-11-09</time><p class="post-excerpt is-flex-grow-2 mt-2">FHQ-Treap 与Treap都保证在第一关键字有序的情况下，维护第二关键字以达到平衡的目的。
+
 但是Treap用的是旋转，FHQ-Treap 用的是分裂和合并。
 
 FHQ-Treap 与Treap不同的地方：
 
 优美的分裂和合并。
-非旋。
-支持区间修改
 
+非旋。
+
+支持区间修改
 
 FHQ-Treap 与Treap相同的地方：
 
 都保证在第一关键字有序的情况下，维护第二关键字。
-本质上都是BST(二叉搜索树)。
 
+本质上都是BST(二叉搜索树)。
 
 注意点
 
 合并时要保证第一棵树的权值小于第二棵树的权值(因为合并操作只比较随机值)(仅指作为平衡树时的操作)。
-排名分裂维护的是书的中序遍历。(例题)
 
+排名分裂维护的是书的中序遍历。(例题)
 
 Code of P3369 【模板】普通平衡树
 
-
 #include&amp;lt;bits/stdc++.h&amp;gt;
 #define N 200005
-using nam..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/09/FHQ-%20Treap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/04/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%E5%B0%8F%E7%BB%93/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/04/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%E5%B0%8F%E7%BB%93/">乘法逆元小结</a></h2><time class="has-text-grey" datetime="2021-11-04T12:35:57.000Z">2021-11-04</time><p class="post-excerpt is-flex-grow-2 mt-2">
-什么是乘法逆元
+using na..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/09/FHQ-%20Treap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/11/04/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%E5%B0%8F%E7%BB%93/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/11/04/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%E5%B0%8F%E7%BB%93/">乘法逆元小结</a></h2><time class="has-text-grey" datetime="2021-11-04T12:35:57.000Z">2021-11-04</time><p class="post-excerpt is-flex-grow-2 mt-2">什么是乘法逆元
 
 当有 $ a*x ≡ 1 \pmod {p} $ 时，则 $a$是模 $ p$ 意义下的乘法逆元。
 
 费马小定理求逆元
+
 费马小定理
+
 $a ≡ a^{p-1} \pmod {p} $
+
 所以
+
 $a^{p-2} ≡ 1 \pmod {p} $
+
 求 $a^{p-2} \bmod p$即可。
-当且仅当 $p$ 为质数且 $a,p$ 互质时可用。int ksm(int x,int k){
-	int sum=1;
-	while(k){
-		if(k&amp;amp;1) sum=sum*x%p;
-		x=x*x%p; k&amp;gt;&amp;gt;=1;
-	}
-	return sum;
+
+当且仅当 $p$ 为质数且 $a,p$ 互质时可用。
+int ksm(int x,int k){
+int sum=1;
+while(k){
+if(k&amp;amp;1) sum=sum*x%p;
+x=x*x%p; k&amp;gt;&amp;gt;=1;
+}
+return sum;
 }
 signed main(){
-	px=read(),p=read();
-	ans=ksm(x,p-2);
-	return 0;
+px=read(),p=read();
+ans=ksm(x,p-2);
+return 0;
 }
-..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/04/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%E5%B0%8F%E7%BB%93/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/24/CSP-S%202021%20%E6%B8%B8%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a><a href="/tags/%E6%B8%B8%E8%AE%B0"><i class="tag post-item-tag">游记</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/24/CSP-S%202021%20%E6%B8%B8%E8%AE%B0/">CSP-S 2021 游记</a></h2><time class="has-text-grey" datetime="2021-10-24T13:16:07.000Z">2021-10-24</time><p class="post-excerpt is-flex-grow-2 mt-2">
-2021.10.22
- 来到杭州，然后打印乱七八糟的东西，吃了兰州拉面 ？？？
-  晚上睡不着。
+
+扩展欧几..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/11/04/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%E5%B0%8F%E7%BB%93/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/2.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/24/CSP-S%202021%20%E6%B8%B8%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/2.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a><a href="/tags/%E6%B8%B8%E8%AE%B0"><i class="tag post-item-tag">游记</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/24/CSP-S%202021%20%E6%B8%B8%E8%AE%B0/">CSP-S 2021 游记</a></h2><time class="has-text-grey" datetime="2021-10-24T13:16:07.000Z">2021-10-24</time><p class="post-excerpt is-flex-grow-2 mt-2">2021.10.22
+
+来到杭州，然后打印乱七八糟的东西，吃了兰州拉面 ？？？
+
+晚上睡不着。
 
 2021.10.23
-  早上 $5:00$ 就起来划水，上午普及组打铁。
- $2h$ 打完四道暴力，然后开始扫雷（ 。
- 预估得分：$355$ ；
- 中午吃完饭就快一点半了，很困。
- 下午更困了屮。
- $14:00$ 进场，趴着睡了 $20min$ 。
- $14:30$ 开考，还是有点混乱，甚至想上大号。
- 看 $T1$ ，好像可做，$30min$ 打了个离散化 + 三分的做法，过了大样例，然后莫名自信 (垃圾大样例)。
- 然后看 $T2$ ,看半天不会打，看 $T3 T4$ 好像也不会。
- $16:30$ 硬着头皮打 $T2$ 暴力，然后忽然发现 $T3$ 好像可做。
- $17:00$ 发现根本想不出来..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/24/CSP-S%202021%20%E6%B8%B8%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/4.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/10/%E4%B8%BB%E5%B8%AD%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/4.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/10/%E4%B8%BB%E5%B8%AD%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">主席树学习笔记</a></h2><time class="has-text-grey" datetime="2021-10-10T13:01:08.000Z">2021-10-10</time><p class="post-excerpt is-flex-grow-2 mt-2">权值线段树就是指线段树的叶子节点保存的是当前值的个数。
+
+早上 $5:00$ 就起来划水，上午普及组打铁。
+
+$2h$ 打完四道暴力，然后开始扫雷（ 。
+
+预估得分：$355$ ；
+
+中午吃完饭就快一点半了，很困。
+
+下午更困了屮。
+
+$14:00$ 进场，趴着睡了 $20min$ 。
+
+$14:30$ 开考，还是有点混乱，甚至想上大号。
+
+看 $T1$ ，好像可做，$30min$ 打了个离散化 + 三分的做法，过了大样例，然后莫名自信 (垃圾大样例)。
+
+然后看 $T2$ ,看半天不会打，看 $T3 T4$ 好像也不会。
+
+$16:30$ 硬着头皮打 $T2$ 暴力，然后忽然发现 $T3$ 好像可做。
+
+$17:00$ 发现根本想不出来，然后..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/24/CSP-S%202021%20%E6%B8%B8%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/4.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/10/%E4%B8%BB%E5%B8%AD%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/4.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/10/%E4%B8%BB%E5%B8%AD%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">主席树学习笔记</a></h2><time class="has-text-grey" datetime="2021-10-10T13:01:08.000Z">2021-10-10</time><p class="post-excerpt is-flex-grow-2 mt-2">权值线段树
+就是指线段树的叶子节点保存的是当前值的个数。
+
 权值线段树一般支持以下三个操作：
 
 insert
@@ -109,58 +156,73 @@ erase/remove
 
 query
 
-
 贴一个alphadalao的题解。
 
-主席树主席树，也叫做可持久化线段树，准确来说，应该叫做可持久化权值线段树，因为其中的每一颗树都是一颗权值线段树。
+主席树
+主席树，也叫做可持久化线段树，准确来说，应该叫做可持久化权值线段树，因为其中的每一颗树都是一颗权值线段树。
+
 经典例题：查询区间第k小。
+
 主席树是静态的。
+
 为了实现可持久化，就要保存树的历史版本。最自然的想法当然是每进行一次修改，就新建一颗线段树，这样的空间复杂度显然是不能够接受的。通过观察不难发现，每次进行单点修改，发生变化的只有从叶子节点到根节点这一条链上的节点，换句话说，只有 $logN$ 个节点发生了变化，而其他的节点都可以重用，没有必要新建。
 
 看图非常好理解。
+
 超棒的讲解
 
-然后就是一些实现上的细节了。
-..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/10/%E4%B8%BB%E5%B8%AD%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/1.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/05/P7746%20PLA%C4%86E%20%E9%A2%98%E8%A7%A3/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/1.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/05/P7746%20PLA%C4%86E%20%E9%A2%98%E8%A7%A3/">P7746 PLAĆE 题解</a></h2><time class="has-text-grey" datetime="2021-10-05T13:27:26.000Z">2021-10-05</time><p class="post-excerpt is-flex-grow-2 mt-2">题目大意给定一棵初始权值已知的树，每次操作:
+然后就是一些实现上..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/10/%E4%B8%BB%E5%B8%AD%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/1.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/10/05/P7746%20PLA%C4%86E%20%E9%A2%98%E8%A7%A3/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/1.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/10/05/P7746%20PLA%C4%86E%20%E9%A2%98%E8%A7%A3/">P7746 PLAĆE 题解</a></h2><time class="has-text-grey" datetime="2021-10-05T13:27:26.000Z">2021-10-05</time><p class="post-excerpt is-flex-grow-2 mt-2">题目大意
+给定一棵初始权值已知的树，每次操作:
 
 对某个节点子树上的所有节点加上 $ x $ 。
+
 查询某个节点的权值。
 
-
 具体思路
+
 1.暴力(112 pts)
- 对于每次修改操作，我们把修改值储存下来，然后每次询问操作我们历遍所求点的祖先，计算总和。
- 这看起来是 $\mathcal{O}( m\log n )$ 的正解，但是这仅限于这棵树是平衡的时候。在退化成链的极限条件下会被卡到 $\mathcal{O}( mn )$ ，在 $ 1 \le  n , m , \le 5 \times 10^5 $ 的数据范围下会T掉。
- 核心代码：
+
+对于每次修改操作，我们把修改值储存下来，然后每次询问操作我们历遍所求点的祖先，计算总和。
+
+这看起来是 $\mathcal{O}( m\log n )$ 的正解，但是这仅限于这棵树是平衡的时候。在退化成链的极限条件下会被卡到 $\mathcal{O}( mn )$ ，在 $ 1 \le  n , m , \le 5 \times 10^5 $ 的数据范围下会T掉。
+
+核心代码：
+
 int a=read();
 int x=tree[a].fa,w=tree[a].num;
 while(1){
-  if(x==0) break;
-  w+=tag[x];..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/05/P7746%20PLA%C4%86E%20%E9%A2%98%E8%A7%A3/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/1.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/07/04/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/1.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/07/04/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">树状数组学习笔记</a></h2><time class="has-text-grey" datetime="2021-07-04T07:17:40.000Z">2021-07-04</time><p class="post-excerpt is-flex-grow-2 mt-2">位运算是补码进行运算的因此可以解释负数进行位运算时的奇妙现象
-
+if(x==0) break;
+w+=tag[x];
+..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/10/05/P7746%20PLA%C4%86E%20%E9%A2%98%E8%A7%A3/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/1.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/07/04/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/1.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/07/04/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">树状数组学习笔记</a></h2><time class="has-text-grey" datetime="2021-07-04T07:17:40.000Z">2021-07-04</time><p class="post-excerpt is-flex-grow-2 mt-2">位运算是补码进行运算的
+因此可以解释负数进行位运算时的奇妙现象
 
 补码：正数的补码就是其本身
 
 负数的补码是在其原码的基础上, 符号位不变, 其余各位取反, 最后+1. (即在反码的基础上+1)
-E:原码：10000001；   补码：01111111.
 
+E:原码：10000001；
+补码：01111111.
 
-lowbit：lowbit这个函数的功能就是求某一个数的二进制表示中最低的一位1E:lowbit(10001)&amp;#x3D;1,lowbit(10010)&amp;#x3D;10。
+lowbit：lowbit这个函数的功能就是求某一个数的二进制表示中最低的一位1
+E:lowbit(10001)&amp;#x3D;1,lowbit(10010)&amp;#x3D;10。
+
 lowbit的实现方式：
 
-1. 
-int lowbit(x) 
-{	
-    return x - (x &amp;amp; (x - 1));
+1.
+
+int lowbit(x)
+{
+return x - (x &amp;amp; (x - 1));
 }
 
 2.(推荐)
-int lowbit(x) 
-{	
-    return x &amp;amp; -x;
+
+int lowbit(x)
+{
+return x &amp;amp; -x;
 }
 
-E:lowbit(1000011)&amp;..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/07/04/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/4.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/06/26/p7635-coci-2010-2011-5-dvoniz-solution/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/4.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/06/26/p7635-coci-2010-2011-5-dvoniz-solution/">P7635 [COCI2010-2011#5] DVONIZ の 题解</a></h2><time class="has-text-grey" datetime="2021-06-26T00:50:48.000Z">2021-06-26</time><p class="post-excerpt is-flex-grow-2 mt-2">题目
+E:lowbit(1000011)&amp;#x3D;100011..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/07/04/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/images/covers/4.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2021/06/26/p7635-coci-2010-2011-5-dvoniz-solution/"><img class="post-cover-img js-img-fadeIn" src="/images/covers/4.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/OI"><i class="tag post-item-tag">OI</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2021/06/26/p7635-coci-2010-2011-5-dvoniz-solution/">P7635 [COCI2010-2011#5] DVONIZ の 题解</a></h2><time class="has-text-grey" datetime="2021-06-26T00:50:48.000Z">2021-06-26</time><p class="post-excerpt is-flex-grow-2 mt-2">题目
 
 这道题的思路很暴力，通过优化的枚举就可以得到一个很不错的时间复杂度，只是坑点有点多，所有坑点我都会在接下来的文字中叙述。
 
@@ -170,13 +232,12 @@ E:lowbit(1000011)&amp;..</p><a class="button is-default mt-2 has-text-weight-sem
 
 我们可以将每一个数元素所对应的 $K$ 从最大值开始向前枚举，这种算法可以得到较高的分数，但肯定不是正解，但如果思路错了分数甚至没有暴力高。
 
-
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 long long n,s,x,sum[100005];
 bool work(int i,int mid){
-	if((sum[i+mid-1]-sum[i-1]&amp;gt;s)||(sum[i+mid*2-1]-sum[i+mid-1]&amp;gt;s))
-		ret..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/06/26/p7635-coci-2010-2011-5-dvoniz-solution/">更多</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><a class="extend prev" rel="prev" href="/archives/page/3/"><i class="iconfont icon-prev has-text-grey"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+if((sum[i+mid-1]-sum[i-1]&amp;gt;s)||(sum[i+mid*2-1]-sum[i+mid-1]&amp;gt;s))
+return ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2021/06/26/p7635-coci-2010-2011-5-dvoniz-solution/">更多</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><a class="extend prev" rel="prev" href="/archives/page/3/"><i class="iconfont icon-prev has-text-grey"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
 
 window.addEventListener('resize', $claudia.throttle(function () {
     var images = document.querySelectorAll('.js-img-fadeIn')
