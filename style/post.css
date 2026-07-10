@@ -191,6 +191,32 @@
 .post-page .comment-container {
   border-top: 1px solid var(--border-line-color);
 }
+.post-page .giscus-comment-container {
+  padding-top: 1.5rem;
+  overflow-x: hidden;
+}
+.post-page .giscus-comment-container .giscus-comment-title {
+  margin-bottom: 1rem;
+  color: var(--primary-text-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.post-page .giscus-comment-container .giscus {
+  width: 100%;
+  overflow-x: hidden;
+}
+.post-page .giscus-comment-container .giscus-config-hint,
+.post-page .giscus-comment-container .giscus-error-message {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border-line-color);
+  border-radius: 6px;
+  background: var(--third-bg-color);
+  color: var(--second-text-color);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
 .post-page .toc {
   position: sticky;
   top: 60px;

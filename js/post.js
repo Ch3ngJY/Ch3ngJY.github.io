@@ -193,6 +193,117 @@ var $posts = {
             appKey: el.dataset.comment_valine_key
         })
     },
+    getGiscusTheme: function () {
+        var container = document.getElementById('giscusComments')
+        var current = 'light'
+
+        if (window.$claudia && window.$claudia.appearance) {
+            current = window.$claudia.appearance.getCurrent()
+        } else if (window.matchMedia) {
+            current = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+
+        if (current === 'dark') {
+            return container && container.dataset.giscusThemeDark || 'dark'
+        }
+
+        return container && container.dataset.giscusThemeLight || 'light'
+    },
+    syncGiscusTheme: function () {
+        var iframe = document.querySelector('iframe.giscus-frame')
+
+        if (!iframe || !iframe.contentWindow) return
+
+        iframe.contentWindow.postMessage({
+            giscus: {
+                setConfig: {
+                    theme: $posts.getGiscusTheme()
+                }
+            }
+        }, 'https://giscus.app')
+    },
+    bindGiscusThemeSync: function () {
+        var appearance = window.$claudia && window.$claudia.appearance
+
+        if (appearance && !appearance._giscusThemeSyncBound) {
+            var originalApply = appearance.apply
+
+            appearance.apply = function (mode, save) {
+                originalApply.call(appearance, mode, save)
+                $posts.syncGiscusTheme()
+            }
+            appearance._giscusThemeSyncBound = true
+        }
+
+        if (window.matchMedia && !this._giscusSystemThemeSyncBound) {
+            var media = window.matchMedia('(prefers-color-scheme: dark)')
+            var syncTheme = function () {
+                $posts.syncGiscusTheme()
+            }
+
+            if (media.addEventListener) {
+                media.addEventListener('change', syncTheme)
+            } else if (media.addListener) {
+                media.addListener(syncTheme)
+            }
+
+            this._giscusSystemThemeSyncBound = true
+        }
+    },
+    showMissingGiscusConfig: function (container) {
+        var isLocal = window.location.hostname === 'localhost'
+            || window.location.hostname === '127.0.0.1'
+            || window.location.hostname === '::1'
+            || window.location.protocol === 'file:'
+
+        if (isLocal) {
+            var hint = container.querySelector('.giscus-config-hint')
+            if (hint) hint.classList.remove('is-hidden')
+        } else {
+            container.hidden = true
+        }
+
+        container.dataset.giscusLoaded = 'true'
+    },
+    addGiscusComment: function () {
+        var container = document.getElementById('giscusComments')
+
+        if (!container || container.dataset.giscusLoaded === 'true') return
+
+        if (container.dataset.giscusConfigMissing === 'true') {
+            this.showMissingGiscusConfig(container)
+            return
+        }
+
+        var mount = container.querySelector('.giscus')
+        if (!mount) return
+
+        var script = document.createElement('script')
+        script.src = 'https://giscus.app/client.js'
+        script.async = true
+        script.crossOrigin = 'anonymous'
+        script.setAttribute('data-repo', container.dataset.giscusRepo)
+        script.setAttribute('data-repo-id', container.dataset.giscusRepoId)
+        script.setAttribute('data-category', container.dataset.giscusCategory)
+        script.setAttribute('data-category-id', container.dataset.giscusCategoryId)
+        script.setAttribute('data-mapping', container.dataset.giscusMapping || 'pathname')
+        script.setAttribute('data-strict', container.dataset.giscusStrict || '0')
+        script.setAttribute('data-reactions-enabled', container.dataset.giscusReactionsEnabled || '1')
+        script.setAttribute('data-emit-metadata', container.dataset.giscusEmitMetadata || '0')
+        script.setAttribute('data-input-position', container.dataset.giscusInputPosition || 'bottom')
+        script.setAttribute('data-theme', this.getGiscusTheme())
+        script.setAttribute('data-lang', container.dataset.giscusLang || 'zh-CN')
+        script.setAttribute('data-loading', container.dataset.giscusLoading || 'lazy')
+        script.addEventListener('error', function () {
+            var message = document.createElement('p')
+            message.className = 'giscus-error-message'
+            message.textContent = '评论加载失败，请稍后刷新重试。'
+            container.appendChild(message)
+        })
+
+        mount.appendChild(script)
+        container.dataset.giscusLoaded = 'true'
+    },
     mounted: function () {
         hljs && hljs.initHighlighting()
 
@@ -213,6 +324,8 @@ var $posts = {
         this.smoothScrollToHash()
 
         window.Valine && this.addValineComment()
+        this.addGiscusComment()
+        this.bindGiscusThemeSync()
     }
 }
 
