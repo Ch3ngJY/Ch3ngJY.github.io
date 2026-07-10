@@ -10,6 +10,17 @@ article.post-container.is-flex.is-justify-content-center.section.container.is-ma
                         - var imgURL = getPostCoverImg(post)
                         - var isExcerpt = post.excerpt && post.excerpt.length > 0
                         - var postContent = isExcerpt ? post.excerpt : post.content
+                        -
+                            var previewText = postContent
+                                .replace(/<br\s*\/?>/gi, '\n')
+                                .replace(/<\/(p|div|section|article|blockquote|pre|li|h[1-6])>/gi, '\n')
+                                .replace(/<(\/)?(ul|ol)>/gi, '\n')
+                            previewText = strip_html(previewText)
+                                .replace(/\r\n?/g, '\n')
+                                .replace(/[ \t]+\n/g, '\n')
+                                .replace(/\n[ \t]+/g, '\n')
+                                .replace(/\n{3,}/g, '\n\n')
+                                .trim()
                         article.post-item-card
                             if imgURL
                                 header.is-relative.is-flex
@@ -29,7 +40,7 @@ article.post-container.is-flex.is-justify-content-center.section.container.is-ma
                                 if post.date
                                     time.has-text-grey(datetime=post.date.toJSON())= date(post.date, date_format)
                                 p.post-excerpt.is-flex-grow-2.mt-2
-                                    = truncate( strip_html(postContent), {length: 360, omission: '..'} )
+                                    = truncate(previewText, {length: 360, omission: '..'})
                                 a.button.is-default.mt-2.has-text-weight-semibold(href= postURL)= __('read_more')
 
                     -
