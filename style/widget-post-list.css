@@ -64,6 +64,9 @@
   word-break: break-word;
   line-height: 1.75;
 }
+.post-container .post-item-card .post-card-content > .button.is-default.mt-2.has-text-weight-semibold {
+  display: none;
+}
 .post-container .aside-card-container {
   padding: 10px;
   margin-bottom: 15px;
