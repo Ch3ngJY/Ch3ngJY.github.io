@@ -59,8 +59,8 @@
     
     <entry>
       <title>CF 板刷记录</title>
-      <link href="/2022/11/18/CF%20%E6%9D%BF%E5%88%B7%E8%AE%B0%E5%BD%95/"/>
-      <url>/2022/11/18/CF%20%E6%9D%BF%E5%88%B7%E8%AE%B0%E5%BD%95/</url>
+      <link href="/2022/11/19/CF%20%E6%9D%BF%E5%88%B7%E8%AE%B0%E5%BD%95/"/>
+      <url>/2022/11/19/CF%20%E6%9D%BF%E5%88%B7%E8%AE%B0%E5%BD%95/</url>
       
         <content type="html"><![CDATA[<h3 id="CF1748E-2300"><a href="#CF1748E-2300" class="headerlink" title="CF1748E (*2300)"></a>CF1748E (*2300)</h3><p>经过观察可以发现符合要求的 b 序列的充要条件是和 a 的笛卡尔树相同。</p><p>这个笛卡尔树比较特别，单看权值时是一个大根堆不是小根堆，把权值取反即可，差不多的。</p><p>想到笛卡尔树就好办了，建出笛卡尔树然后在上面 dp 即可。</p><p><a href="https://codeforces.com/contest/1748/submission/181170096">Code</a></p><h3 id="CF-1737D-2200"><a href="#CF-1737D-2200" class="headerlink" title="CF 1737D (*2200)"></a>CF 1737D (*2200)</h3><p>先说结论：最短路一定是将某一条边变为连接 1 和 n ，然后直接走这条边。容易反证得出。</p><p>那么我们现在的问题就是求出对于每一条边，同时经过两个端点和这条边的最短路径，求出来之后乘以边权再取最小值即可。</p><p>做法很多，但是既然 n 这么小就还是 Floyed 好了。</p><p>总时间复杂度 $O(n^3+nm)$。</p><p><a href="https://codeforces.com/contest/1737/submission/181391513">Code</a></p><h3 id="CF-1726E-2400"><a href="#CF-1726E-2400" class="headerlink" title="CF 1726E (*2400)"></a>CF 1726E (*2400)</h3><p>很厉害的数数题。</p><p>首先有一个性质：将 $i$ 与 $p_i$ 连边，则只会出现一元环，二元环和四元环，且四元环形如 $(i,i+1,j,j+1)$。</p><p>然后开始统计，一元环和二元环的情况是平凡的，容易递推得到：$f_i=f_{i-1}+(i-1)f_{i-2}$。</p><p>考虑四元环，此时我们已经求出了 $f$，不妨枚举四元环的个数，设为 $i$。</p><p>首先从 $n$ 个数中选出 $2i$ 个相邻数对乘以 $\tbinom{n-2i}{2i}$，其中有一半是翻转的，乘以 $\tbinom{2i}{i}$，最后两两任意组合为 $i!$。</p><p>最终递推式为：</p><div class="math-display">$$\sum\limits_{i=0}^{n/4}\dbinom{n-2i}{2i}\dbinom{2i}{i}i!f_{n-4i}$$</div><p>时间复杂度 $O(n)$。</p><p><a href="https://codeforces.com/contest/1726/submission/181408597">Code</a></p><h3 id="CF-1725L-2400"><a href="#CF-1725L-2400" class="headerlink" title="CF 1725L (*2400)"></a>CF 1725L (*2400)</h3><p>这波，这波是复刻经典。</p><p>考过 NOIP 2021 的同学都不难发现这个操作是交换相邻两个前缀和，不能交换最后两个。</p><p>那么如果有前缀和小于 $0$ 或者前 $n-1$ 个数中有的数前缀和比第 $n$ 个大则无解。</p><p>反之求一下逆序对即可。</p><p><a href="https://codeforces.com/contest/1725/submission/182186945">Code</a></p>]]></content>
       
@@ -238,8 +238,8 @@
     
     <entry>
       <title>CF200A Cinema 题解</title>
-      <link href="/2022/08/17/CF200A%20Cinema%20%E9%A2%98%E8%A7%A3/"/>
-      <url>/2022/08/17/CF200A%20Cinema%20%E9%A2%98%E8%A7%A3/</url>
+      <link href="/2022/08/18/CF200A%20Cinema%20%E9%A2%98%E8%A7%A3/"/>
+      <url>/2022/08/18/CF200A%20Cinema%20%E9%A2%98%E8%A7%A3/</url>
       
         <content type="html"><![CDATA[<p>根据题意，若要填的位置已经被占了，那么就按照半径递增的曼哈顿距离圆填入。</p><p>我们发现，一个点周围最密集的情况下也只可能有 $k$ 个点，也就是说这个正方形的边长不会超过 $\sqrt k$ 。</p><p>所以我们需要找的只有对角线为 $\sqrt{2k}$ 的正方形，用并查集分别维护每一行的联通块的左右边界就可以在 $O(\sqrt{k})$ 的时间复杂度内实现单次查询。 </p><p>但是当 $m$ 很小的时候，左右边界被填满了，那么就会导致这时候不是一个正方形，需要遍历的行数增多。</p><p>但是这时候我们发现中间的一部分已经填满，不需要再填，那么我们也用并查集维护一下，这样可以保证查询的区间一定是一个正方形。</p><p>总时间复杂度 $O(k\sqrt{k})$ 。</p><p><a href="https://codeforces.com/contest/200/submission/168743887">aclink</a></p>]]></content>
       
