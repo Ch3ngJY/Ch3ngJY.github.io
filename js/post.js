@@ -182,12 +182,6 @@ var $posts = {
                     top: Math.max(targetTop, 0),
                     behavior: 'smooth'
                 })
-
-                if (window.history && window.history.pushState) {
-                    window.history.pushState(null, '', rawHash)
-                } else {
-                    window.location.hash = rawHash
-                }
             })
         })
     },
