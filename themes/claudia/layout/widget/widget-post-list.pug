@@ -28,7 +28,7 @@ article.post-container.is-flex.is-justify-content-center.section.container.is-ma
                                         img(src= imgURL alt="loading..")
                                     a.post-cover-link.has-text-centered.skeleton(href= postURL)
                                         img.post-cover-img.js-img-fadeIn(src= imgURL alt="loading..", data-backdrop="true")
-                            section.content.post-card-content.p-4.pb-5
+                            section.content.post-card-content.p-4
                                 if post.tags && post.tags.length > 0
                                     header
                                             each tag in post.tags.toArray()
@@ -41,7 +41,6 @@ article.post-container.is-flex.is-justify-content-center.section.container.is-ma
                                     time.has-text-grey(datetime=post.date.toJSON())= date(post.date, date_format)
                                 p.post-excerpt.is-flex-grow-2.mt-2
                                     = truncate(previewText, {length: 360, omission: '..'})
-                                a.button.is-default.mt-2.has-text-weight-semibold(href= postURL)= __('read_more')
 
                     -
                         // turnPage
