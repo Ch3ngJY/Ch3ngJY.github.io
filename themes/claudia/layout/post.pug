@@ -36,14 +36,28 @@ block content
         .columns.is-flex-desktop.is-justify-content-center.is-flex-direction-row-reverse
             .column.is-3.is-hidden-mobile(class= tocContent.length < 1 && 'is-hidden')!= tocContent
             .column.is-9
-                header.my-4
+                header.post-hero
+                    h1.post-title.is-family-serif#postTitle= page.title
+                    .post-meta
+                        if page.date
+                            span.post-meta-item
+                                span.post-meta-label 发布于
+                                time(datetime=page.date.toJSON())= date(page.date, date_format)
+                        if page.categories && page.categories.length > 0
+                            if page.date
+                                span.post-meta-divider
+                            span.post-meta-item
+                                span.post-meta-label 分类
+                                each category, categoryIndex in page.categories.toArray()
+                                    if categoryIndex > 0
+                                        span.post-meta-separator /
+                                    a.post-category-link(href= url_for(`/categories/${category.name}`))= category.name
                     if page.tags && page.tags.length > 0
-                        each tag in page.tags.toArray()
-                            a(href= url_for(`/tags/${tag.name}`))
-                                i.tag.post-item-tag= tag.name
-                h1.mt-0.mb-1.is-family-serif#postTitle= page.title
-                if page.date
-                    time.has-text-grey(datetime=page.date.toJSON())= date(page.date, date_format)
+                        .post-tags
+                            span.post-meta-label 标签
+                            each tag in page.tags.toArray()
+                                a(href= url_for(`/tags/${tag.name}`))
+                                    i.tag.post-item-tag= tag.name
                 article.mt-2.post-content!= page.content
                 section.jump-container.is-flex.is-justify-content-space-between.my-6
                     // em is empty placeholder
