@@ -9,7 +9,7 @@
 }
 .post-container .post-item-card > header {
   overflow: hidden;
-  aspect-ratio: 16/9;
+  height: clamp(145px, 18vw, 220px);
   z-index: 1;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
@@ -54,6 +54,11 @@
   font-size: 14px;
 }
 .post-container .post-item-card .post-card-content .post-excerpt {
+  display: -webkit-box;
+  max-height: 5.25em;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   white-space: pre-line;
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -235,4 +240,10 @@
 .post-container .paginator .extend.current {
   color: #fff !important;
   background: #3273dc;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container .post-item-card > header {
+    height: clamp(130px, 42vw, 180px);
+  }
 }
