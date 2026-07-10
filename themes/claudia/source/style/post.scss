@@ -55,6 +55,10 @@ $lineColor: var(--border-line-color);
   min-height: clamp(320px, 42vw, 520px);
   overflow: hidden;
   color: #fff;
+  --post-hero-overlay-start: rgba(0, 0, 0, .30);
+  --post-hero-overlay-end: rgba(0, 0, 0, .46);
+  --post-hero-vignette-center: rgba(0, 0, 0, .04);
+  --post-hero-vignette-edge: rgba(0, 0, 0, .34);
   background:
     radial-gradient(circle at 50% 30%, rgba(70, 90, 140, .45), transparent 55%),
     linear-gradient(135deg, #111827, #030712);
@@ -78,8 +82,8 @@ $lineColor: var(--border-line-color);
 
   &:after {
     background:
-      linear-gradient(180deg, rgba(0, 0, 0, .54), rgba(0, 0, 0, .68)),
-      radial-gradient(circle at 50% 50%, rgba(0, 0, 0, .08), rgba(0, 0, 0, .54));
+      linear-gradient(180deg, var(--post-hero-overlay-start), var(--post-hero-overlay-end)),
+      radial-gradient(circle at 50% 50%, var(--post-hero-vignette-center), var(--post-hero-vignette-edge));
   }
 
   &.is-fallback:before {
@@ -133,7 +137,7 @@ $lineColor: var(--border-line-color);
 
   .post-hero-title {
     margin: 22px 0 0;
-    color: #fff;
+    color: #fff!important;
     font-size: clamp(2.2rem, 6vw, 4.6rem);
     line-height: 1.18;
     font-weight: 800;
@@ -160,6 +164,22 @@ $lineColor: var(--border-line-color);
 
   .post-hero-tags {
     margin-top: 22px;
+  }
+}
+
+:root.appearance-dark .post-hero {
+  --post-hero-overlay-start: rgba(0, 0, 0, .46);
+  --post-hero-overlay-end: rgba(0, 0, 0, .62);
+  --post-hero-vignette-center: rgba(0, 0, 0, .08);
+  --post-hero-vignette-edge: rgba(0, 0, 0, .48);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.appearance-auto .post-hero {
+    --post-hero-overlay-start: rgba(0, 0, 0, .46);
+    --post-hero-overlay-end: rgba(0, 0, 0, .62);
+    --post-hero-vignette-center: rgba(0, 0, 0, .08);
+    --post-hero-vignette-edge: rgba(0, 0, 0, .48);
   }
 }
 
