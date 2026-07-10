@@ -1,0 +1,25 @@
+@mixin dark{
+  --page-bg-color: #14161a;
+  --primary-bg-color: #181818;
+  --second-bg-color: #212121;
+  --third-bg-color: #ffffff14;
+
+  --primary-text-color: #fff;
+  --second-text-color: #aaa;
+
+  --border-line-color: rgba(255, 255, 255, 0.05);
+  --border-line-color-2: rgba(255, 255, 255, 0.02);
+  --top-bar-bg-color: rgba(27, 29, 34, 0.92);
+  --top-bar-border-color: rgba(255, 255, 255, 0.08);
+  --top-bar-shadow: 0 1px 16px rgba(0, 0, 0, 0.28);
+  --blockquote-border-color: #aaa;
+  --table-border-color: #aaa;
+  --pre-code-bg-color: #ffffff03;
+
+  --skeleton-bg-color: #2b2b2b;
+  --skeleton-flash-color: 0.05;
+
+  --avatar-border-color: rgba(255, 255, 255, 0.05);
+  --canvas-nest-color: 230, 230, 230;
+  --canvas-nest-opacity: 0.42;
+}

@@ -1,0 +1,93 @@
+# main menu navigation
+menu:
+  Home: /
+  About: /about
+  Archive: /archives
+  分类: /categories
+  标签: /tags
+
+widgets:
+  - profile
+  - recent_posts
+  - category
+  - archive
+  - tag
+
+# social config
+social:
+  zhihu:
+  twitter:
+  facebook:
+  linkedin:
+  instagram:
+  github: Ch3ngJY
+
+user:
+  name: ChengJY
+  avatar: /images/good-night-day-1.png
+  location: 浙江
+  description: 平常心
+  footnotes: # footnotes
+
+# documents: https://github.com/utterance/utterances
+# API config: https://utteranc.es/
+comment_utteranc:
+  enable: false
+  repo:
+
+
+# documents: https://valine.js.org/quickstart.html
+comment_valine:
+  enable: false
+  appId:
+  appKey:
+
+comment_disqus:
+    enable: false
+    url:  # the url of your website main domain like this https://xxx.xxx/
+    name: # the short name in disqus
+
+# dark
+# light
+# user-can-set
+appearance: auto # Default value is auto
+
+# Post cover image pool.
+# Put local images under source/images/covers/ or use stable CDN URLs.
+# Direct Pixiv hotlinking is not recommended because it is often blocked.
+post_cover:
+  random: true
+  random_covers:
+    - /images/covers/1.jpg
+
+# Similar to Butterfly's canvas-nest background effect.
+background_effect:
+  canvas_nest:
+    enable: true
+    count: 99
+    mobile: false
+    max_distance: 6000
+    mouse_distance: 20000
+
+# Miscellaneous
+favicon: images/favicon.ico
+
+friend_links:
+  - title: GitHub
+    link: https://github.com/Ch3ngJY
+
+# Google Analytics
+ga_track_id:
+ga_domain:
+
+# Baidu Analytics
+ba_track_id:
+
+# picture of about page
+about_pic: /images/good-night-day-1.png
+
+image_zoom:
+  enable: true
+
+mathjax:
+  enable: true

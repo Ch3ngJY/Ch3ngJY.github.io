@@ -1,0 +1,52 @@
+-
+    function normalizeImageUrl(imageURL) {
+        if (!imageURL) return false
+        if (/^(https?:)?\/\//.test(imageURL)) return imageURL
+        return url_for(imageURL)
+    }
+
+    function stableHash(text) {
+        const source = String(text || '')
+        let hash = 2166136261
+
+        for (let i = 0; i < source.length; i++) {
+            hash ^= source.charCodeAt(i)
+            hash = Math.imul(hash, 16777619)
+        }
+
+        return hash >>> 0
+    }
+
+    function getRandomPostCoverImg(post) {
+        const coverConfig = theme.post_cover || {}
+        const randomCovers = coverConfig.random_covers || []
+
+        if (!coverConfig.random || randomCovers.length === 0) return false
+
+        const seed = post.path || post.slug || post.title || post.date || Math.random()
+        const hash = stableHash(seed)
+        const mixedHash = (hash ^ (hash >>> 16)) >>> 0
+        return normalizeImageUrl(randomCovers[mixedHash % randomCovers.length])
+    }
+
+    function getPostCoverImg(post) {
+        if (post.cover) return normalizeImageUrl(post.cover)
+        if (post.thumbnail) return normalizeImageUrl(post.thumbnail)
+
+        const randomCover = getRandomPostCoverImg(post)
+        if (randomCover) return randomCover
+
+        const firstImgElRegx = /<img[^>]+src="?([^"\s]+)".*?>/
+        const coverImgElement = post.content.match(firstImgElRegx)
+
+        if (!coverImgElement) return false
+
+        // post.content = post.content.replace(firstImgElRegx, `<img id="__hexo_theme_cover__" src="${coverImgElement[1]}" alt=".." style="display: none;">`)
+
+        return normalizeImageUrl(coverImgElement[1])
+        // const coverImg = coverImgElement[0]
+        // const matchImg = coverImg.match()
+        // if (matchImg) {
+        //     return matchImg[1]
+        // }
+    }
