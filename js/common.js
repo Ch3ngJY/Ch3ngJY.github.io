@@ -20,12 +20,32 @@ window.$claudia = {
         function loaded(event) {
             var image = event.currentTarget
 
-            image.ontransitionend = function () {
-                image.ontransitionend = null
-                image.style.transition = null
+            // Clear a stale fade transition left by a restored/cached page
+            // before reading the component's transition from its stylesheet.
+            image.style.removeProperty('transition')
+            var computedTransition = window.getComputedStyle(image).transition
+            var transitionRestored = false
+            var restoreTimer
+
+            function restoreTransition() {
+                if (transitionRestored) return
+
+                transitionRestored = true
+                window.clearTimeout(restoreTimer)
+                image.removeEventListener('transitionend', handleTransitionEnd)
+                image.style.removeProperty('transition')
             }
-            image.style.transition = 'opacity 320ms'
+
+            function handleTransitionEnd(transitionEvent) {
+                if (transitionEvent.propertyName === 'opacity') restoreTransition()
+            }
+
+            image.addEventListener('transitionend', handleTransitionEnd)
+            image.style.transition = computedTransition + ', opacity 320ms ease'
             image.style.opacity = 1
+            // Cached images may already be fully opaque, so transitionend will
+            // not fire. Always restore the stylesheet transition as a fallback.
+            restoreTimer = window.setTimeout(restoreTransition, 400)
 
             if (image.parentElement && image.parentElement.classList.contains('skeleton')) {
                 image.parentElement.classList.remove('skeleton')
