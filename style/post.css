@@ -195,12 +195,30 @@
   padding-top: 1.5rem;
   overflow-x: hidden;
 }
-.post-page .giscus-comment-container .giscus-comment-title {
+.post-page .giscus-comment-container .giscus-comment-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.45rem;
   margin-bottom: 1rem;
+  color: var(--second-text-color);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.post-page .giscus-comment-container .giscus-comment-heading .giscus-comment-count {
   color: var(--primary-text-color);
-  font-size: 1.5rem;
   font-weight: 700;
-  line-height: 1.4;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.post-page .giscus-comment-container .giscus-comment-heading .giscus-comment-powered {
+  font-style: italic;
+}
+.post-page .giscus-comment-container .giscus-comment-heading .giscus-comment-powered a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .post-page .giscus-comment-container .giscus {
   width: 100%;
