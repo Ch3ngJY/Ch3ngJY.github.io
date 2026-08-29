@@ -18,7 +18,7 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(8, 10, 14, 0.54) 0%, rgba(8, 10, 14, 0.12) 68%, transparent 100%), linear-gradient(180deg, rgba(8, 10, 14, 0.02) 18%, rgba(8, 10, 14, 0.24) 52%, rgba(10, 12, 16, 0.94) 100%);
+  background: linear-gradient(45deg, rgba(8, 10, 14, 0.9) 0%, rgba(8, 10, 14, 0.9) 14%, rgba(8, 10, 14, 0) 68%);
 }
 .post-container .post-item-card:hover, .post-container .post-item-card:focus-within {
   box-shadow: 0 20px 42px -20px rgba(8, 10, 14, 0.9);
@@ -331,7 +331,7 @@
     border-radius: 8px;
   }
   .post-container .post-item-card::after {
-    background: linear-gradient(90deg, rgba(8, 10, 14, 0.42) 0%, transparent 100%), linear-gradient(180deg, rgba(8, 10, 14, 0.04) 12%, rgba(8, 10, 14, 0.36) 48%, rgba(8, 10, 14, 0.96) 100%);
+    background: linear-gradient(45deg, rgba(8, 10, 14, 0.9) 0%, rgba(8, 10, 14, 0.9) 14%, rgba(8, 10, 14, 0) 68%);
   }
   .post-container .post-item-card .post-card-content {
     padding: 14px 15px 16px;
@@ -368,7 +368,7 @@
   box-shadow: 0 12px 32px -18px rgba(52, 47, 42, 0.32);
 }
 :root.appearance-light .post-container .post-item-card::after {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 68%, transparent 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.02) 15%, rgba(252, 250, 247, 0.28) 51%, rgba(250, 248, 244, 0.96) 100%);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 14%, rgba(255, 255, 255, 0) 68%);
 }
 :root.appearance-light .post-container .post-item-card:hover, :root.appearance-light .post-container .post-item-card:focus-within {
   box-shadow: 0 20px 42px -20px rgba(61, 54, 46, 0.42);
@@ -409,7 +409,7 @@
     box-shadow: 0 12px 32px -18px rgba(52, 47, 42, 0.32);
   }
   :root.appearance-auto .post-container .post-item-card::after {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 68%, transparent 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.02) 15%, rgba(252, 250, 247, 0.28) 51%, rgba(250, 248, 244, 0.96) 100%);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 14%, rgba(255, 255, 255, 0) 68%);
   }
   :root.appearance-auto .post-container .post-item-card:hover, :root.appearance-auto .post-container .post-item-card:focus-within {
     box-shadow: 0 20px 42px -20px rgba(61, 54, 46, 0.42);
