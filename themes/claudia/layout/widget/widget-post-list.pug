@@ -5,7 +5,7 @@ article.post-container.is-flex.is-justify-content-center.section.container.is-ma
         div.columns.is-variable.is-1-tablet.is-3-desktop-only.is-2-widescreen.is-full-width
             section.column
                 if posts && posts.length > 0
-                    each post in posts.sort('date', -1).toArray()
+                    each post, postIndex in posts.sort('date', -1).toArray()
                         - var postURL = url_for(post.path)
                         - var imgURL = getPostCoverImg(post)
                         - var isExcerpt = post.excerpt && post.excerpt.length > 0
@@ -21,27 +21,34 @@ article.post-container.is-flex.is-justify-content-center.section.container.is-ma
                                 .replace(/\n[ \t]+/g, '\n')
                                 .replace(/\n{3,}/g, '\n\n')
                                 .trim()
-                        article.post-item-card
+                        article.post-item-card(class= imgURL ? 'has-cover' : 'no-cover')
+                            a.post-card-hit-area(href= postURL, aria-label= post.title ? `阅读文章：${post.title}` : '阅读文章')
                             if imgURL
-                                header.is-relative.is-flex
-                                    div.post-cover-backdrop.is-hidden
-                                        img(src= imgURL alt="loading..")
-                                    a.post-cover-link.has-text-centered.skeleton(href= postURL)
-                                        img.post-cover-img.js-img-fadeIn(src= imgURL alt="loading..", data-backdrop="true")
-                            section.content.post-card-content.p-4
+                                header.post-cover.is-relative.is-flex
+                                    div.post-cover-link.has-text-centered.skeleton
+                                        img.post-cover-img.js-img-fadeIn(
+                                            src= imgURL
+                                            alt= post.title || '文章封面'
+                                            loading= postIndex === 0 ? 'eager' : 'lazy'
+                                            decoding='async'
+                                        )
+                            section.content.post-card-content
                                 if post.tags && post.tags.length > 0
-                                    header
-                                            each tag in post.tags.toArray()
-                                                a(href= url_for(`/tags/${tag.name}`))
-                                                    i.tag.post-item-tag= tag.name
-                                if post.title
-                                    h2.mt-4.mb-0.is-family-serif
-                                        a(href= postURL)= post.title
-                                if post.date
-                                    time.has-text-grey(datetime=post.date.toJSON())= date(post.date, date_format)
-                                p.post-excerpt.is-flex-grow-2.mt-2
-                                    = truncate(previewText, {length: 360, omission: '..'})
-
+                                    header.post-card-tags
+                                        each tag in post.tags.toArray().slice(0, 3)
+                                            a(href= url_for(`/tags/${tag.name}`))
+                                                i.tag.post-item-tag= tag.name
+                                div.post-card-copy
+                                    if post.title
+                                        h2.post-card-title
+                                            a(href= postURL)= post.title
+                                    if post.date
+                                        div.post-card-meta
+                                            span.post-card-meta-mark(aria-hidden='true')
+                                            time(datetime=post.date.toJSON())= date(post.date, date_format)
+                                    if previewText
+                                        p.post-excerpt
+                                            = truncate(previewText, {length: 150, omission: '…'})
                     -
                         // turnPage
                         var paginatorResult = paginator({
@@ -57,10 +64,4 @@ article.post-container.is-flex.is-justify-content-center.section.container.is-ma
                 block sidebar
 block append script
     script.
-        $claudia.fadeInImage(null, $claudia.blurBackdropImg)
-
-        window.addEventListener('resize', $claudia.throttle(function () {
-            var images = document.querySelectorAll('.js-img-fadeIn')
-
-            $claudia.toArray(images).forEach($claudia.blurBackdropImg)
-        }, 150))
+        $claudia.fadeInImage()
