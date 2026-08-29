@@ -55,10 +55,10 @@ $lineColor: var(--border-line-color);
   min-height: clamp(320px, 42vw, 520px);
   overflow: hidden;
   color: #fff;
-  --post-hero-overlay-start: rgba(0, 0, 0, .16);
-  --post-hero-overlay-end: rgba(0, 0, 0, .28);
-  --post-hero-vignette-center: rgba(0, 0, 0, .02);
-  --post-hero-vignette-edge: rgba(0, 0, 0, .20);
+  --post-hero-focus-core: rgba(7, 9, 13, .60);
+  --post-hero-focus-mid: rgba(7, 9, 13, .34);
+  --post-hero-tone-top: rgba(7, 9, 13, .05);
+  --post-hero-tone-mid: rgba(7, 9, 13, .10);
   background:
     radial-gradient(circle at 50% 30%, rgba(70, 90, 140, .45), transparent 55%),
     linear-gradient(135deg, #111827, #030712);
@@ -76,14 +76,27 @@ $lineColor: var(--border-line-color);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    filter: blur(1px);
-    transform: scale(1.035);
+    filter: saturate(1.04) contrast(1.02);
+    transform: scale(1.018);
   }
 
   &:after {
     background:
-      linear-gradient(180deg, var(--post-hero-overlay-start), var(--post-hero-overlay-end)),
-      radial-gradient(circle at 50% 50%, var(--post-hero-vignette-center), var(--post-hero-vignette-edge));
+      linear-gradient(180deg, transparent 86%, var(--primary-bg-color) 100%),
+      radial-gradient(
+        ellipse 38% 62% at 50% 52%,
+        var(--post-hero-focus-core) 0%,
+        var(--post-hero-focus-mid) 46%,
+        rgba(7, 9, 13, .10) 72%,
+        transparent 100%
+      ),
+      linear-gradient(
+        180deg,
+        var(--post-hero-tone-top) 0%,
+        var(--post-hero-tone-mid) 48%,
+        rgba(7, 9, 13, .03) 78%,
+        transparent 100%
+      );
   }
 
   &.is-fallback:before {
@@ -168,18 +181,18 @@ $lineColor: var(--border-line-color);
 }
 
 :root.appearance-dark .post-hero {
-  --post-hero-overlay-start: rgba(0, 0, 0, .34);
-  --post-hero-overlay-end: rgba(0, 0, 0, .50);
-  --post-hero-vignette-center: rgba(0, 0, 0, .05);
-  --post-hero-vignette-edge: rgba(0, 0, 0, .36);
+  --post-hero-focus-core: rgba(4, 6, 10, .68);
+  --post-hero-focus-mid: rgba(4, 6, 10, .42);
+  --post-hero-tone-top: rgba(4, 6, 10, .08);
+  --post-hero-tone-mid: rgba(4, 6, 10, .14);
 }
 
 @media (prefers-color-scheme: dark) {
   :root.appearance-auto .post-hero {
-    --post-hero-overlay-start: rgba(0, 0, 0, .34);
-    --post-hero-overlay-end: rgba(0, 0, 0, .50);
-    --post-hero-vignette-center: rgba(0, 0, 0, .05);
-    --post-hero-vignette-edge: rgba(0, 0, 0, .36);
+    --post-hero-focus-core: rgba(4, 6, 10, .68);
+    --post-hero-focus-mid: rgba(4, 6, 10, .42);
+    --post-hero-tone-top: rgba(4, 6, 10, .08);
+    --post-hero-tone-mid: rgba(4, 6, 10, .14);
   }
 }
 
