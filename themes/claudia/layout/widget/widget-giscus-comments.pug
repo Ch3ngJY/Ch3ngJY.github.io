@@ -36,7 +36,13 @@ if giscus.enable
         data-giscus-theme-dark=giscusThemeDark
         data-giscus-config-missing=missingGiscusConfig ? 'true' : 'false'
     )
-        h2.giscus-comment-title 评论
+        header.giscus-comment-heading
+            span.giscus-comment-count#giscusCommentCount(aria-live='polite') 0 条评论
+            span.giscus-comment-separator(aria-hidden='true') —
+            span.giscus-comment-powered
+                | 由&nbsp;
+                a(href='https://giscus.app/zh-CN', target='_blank', rel='noopener noreferrer') giscus
+                | &nbsp;提供支持
         if missingGiscusConfig
             p.giscus-config-hint.is-hidden 请先在 themes/claudia/_config.yml 填写 comment_giscus 的 repo、repo_id、category、category_id。
         else

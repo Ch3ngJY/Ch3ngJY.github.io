@@ -248,12 +248,33 @@ $lineColor: var(--border-line-color);
     padding-top: 1.5rem;
     overflow-x: hidden;
 
-    .giscus-comment-title {
+    .giscus-comment-heading {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .45rem;
       margin-bottom: 1rem;
-      color: var(--primary-text-color);
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1.4;
+      color: var(--second-text-color);
+      font-size: 1rem;
+      line-height: 1.5;
+
+      .giscus-comment-count {
+        color: var(--primary-text-color);
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+
+      .giscus-comment-powered {
+        font-style: italic;
+
+        a {
+          color: inherit;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+      }
     }
 
     .giscus {

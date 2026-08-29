@@ -250,6 +250,26 @@ var $posts = {
             this._giscusSystemThemeSyncBound = true
         }
     },
+    bindGiscusMetadata: function () {
+        if (this._giscusMetadataBound) return
+
+        var updateCommentCount = function (event) {
+            if (event.origin !== 'https://giscus.app') return
+            if (!event.data || typeof event.data !== 'object' || !event.data.giscus) return
+
+            var iframe = document.querySelector('iframe.giscus-frame')
+            if (iframe && iframe.contentWindow && event.source !== iframe.contentWindow) return
+
+            var discussion = event.data.giscus.discussion
+            if (!discussion || typeof discussion.totalCommentCount !== 'number') return
+
+            var count = document.getElementById('giscusCommentCount')
+            if (count) count.textContent = discussion.totalCommentCount + ' 条评论'
+        }
+
+        window.addEventListener('message', updateCommentCount)
+        this._giscusMetadataBound = true
+    },
     showMissingGiscusConfig: function (container) {
         var isLocal = window.location.hostname === 'localhost'
             || window.location.hostname === '127.0.0.1'
@@ -324,6 +344,7 @@ var $posts = {
         this.smoothScrollToHash()
 
         window.Valine && this.addValineComment()
+        this.bindGiscusMetadata()
         this.addGiscusComment()
         this.bindGiscusThemeSync()
     }
